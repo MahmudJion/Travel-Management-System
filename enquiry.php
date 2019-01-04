@@ -30,6 +30,9 @@ if(isset($_POST["sbmt"]))
 ?>
 
 <?php include('top.php'); ?>
+<br>
+<br>
+<br>
 <!--/sticky-->
 <div style="height:50px"></div>
 <div style="width:1000px; margin:auto"  >
