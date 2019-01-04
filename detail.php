@@ -18,6 +18,9 @@
 <body>
 <?php include('function.php'); ?>
 <?php include('top.php'); ?>
+<br>
+<br>
+<br>
 <!--/sticky-->
 <?php include('slider.php'); ?>
 <div style="height:50px"></div>
