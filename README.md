@@ -1,2 +1,2 @@
 # Travel-Management-System
-php mysql based travel management system with bootstrap
+PHP MySQL based travel management system in Bootstrap
