@@ -1,4 +1,6 @@
-<?php if(!isset($_SESSION)) { session_start(); } ?>
+<?php if (!isset($_SESSION)) {
+    session_start();
+} ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +13,8 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
-
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--js--> 
+<!--js-->
 <script src="js/jquery.min.js"></script>
 
 <!--/js-->
@@ -24,21 +23,19 @@
 <!--header-->
 <!--sticky-->
 <?php
-if($_SESSION['loginstatus']=="")
-{
-	header("location:loginform.php");
+if ($_SESSION['loginstatus']=="") {
+    header("location:loginform.php");
 }
 ?>
 
 <?php include('function.php'); ?>
 <?php
-if(isset($_POST["sbmt"]))
-{
-	$cn=makeconnection();
-	$s="delete from users  where Username='" . $_POST["t1"] . "'";
-	mysqli_query($cn,$s);
-	mysqli_close($cn);
-	echo "<script>alert('Record Delete');</script>";
+if (isset($_POST["sbmt"])) {
+    $cn=makeconnection();
+    $s="delete from users  where Username='" . $_POST["t1"] . "'";
+    mysqli_query($cn, $s);
+    mysqli_close($cn);
+    echo "<script>alert('Record Delete');</script>";
 }
 ?>
 
@@ -51,63 +48,53 @@ if(isset($_POST["sbmt"]))
 </div>
 <div class="col-sm-9">
 
+    <form method="post">
+    <table border="0" width="400px" height="200px" align="center" class="tableshadow">
+    <tr><td colspan="2" class="toptd">Delete User</td></tr>
+    <tr><td class="lefttxt">Select User</td><td><select name="t1" required/><option value="">Select</option>
+
+    <?php
+    $cn=makeconnection();
+    $s="select * from users";
+    $result=mysqli_query($cn, $s);
+    $r=mysqli_num_rows($result);
+    //echo $r;
+
+    while ($data=mysqli_fetch_array($result)) {
+        echo "<option value=$data[0]>$data[0]</option>";
+    }
+    mysqli_close($cn);
 
 
 
-
-<form method="post">
-<table border="0" width="400px" height="200px" align="center" class="tableshadow">
-<tr><td colspan="2" class="toptd">Delete User</td></tr>
-<tr><td class="lefttxt">Select User</td><td><select name="t1" required/><option value="">Select</option>
-
-<?php
-$cn=makeconnection();
-$s="select * from users";
-$result=mysqli_query($cn,$s);
-$r=mysqli_num_rows($result);
-//echo $r;
-
-while($data=mysqli_fetch_array($result))
-{
-	
-		echo "<option value=$data[0]>$data[0]</option>";
-	
-}
-mysqli_close($cn);
-
-
-
-?>
+    ?>
 
 </select>
 
-<?php
-if(isset($_POST["show"]))
-{
-$cn=makeconnection();
-$s="select * from users where Username='" .$_POST["t1"] ."'";
-$result=mysqli_query($cn,$s);
-$r=mysqli_num_rows($result);
-//echo $r;
+        <?php
+        if (isset($_POST["show"])) {
+            $cn=makeconnection();
+            $s="select * from users where Username='" .$_POST["t1"] ."'";
+            $result=mysqli_query($cn, $s);
+            $r=mysqli_num_rows($result);
+            //echo $r;
 
-$data=mysqli_fetch_array($result);
-$Username=$data[0];
-$Pass=$data[1];
-$Usertype=$data[2];
+            $data=mysqli_fetch_array($result);
+            $Username=$data[0];
+            $Pass=$data[1];
+            $Usertype=$data[2];
 
-mysqli_close($cn);
+            mysqli_close($cn);
+        }
 
-}
+        ?>
 
-?>
+        </td></tr>
 
-</td></tr>
-
-<tr><td>&nbsp;</td><td ><input type="submit" value="Delete" name="sbmt" /></td></tr>
-</table>
-</form>
+        <tr><td>&nbsp;</td><td ><input type="submit" value="Delete" name="sbmt" /></td></tr>
+        </table>
+    </form>
 </div>
-
 
 </div>
 <?php include('bottom.php'); ?>
