@@ -1,4 +1,6 @@
-<?php if(!isset($_SESSION)) { session_start(); } ?>
+<?php if (!isset($_SESSION)) {
+    session_start();
+} ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +13,8 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
-
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--js--> 
+<!--js-->
 <script src="js/jquery.min.js"></script>
 
 <!--/js-->
@@ -24,29 +23,22 @@
 <!--header-->
 <!--sticky-->
 <?php
-if($_SESSION['loginstatus']=="")
-{
-	header("location:loginform.php");
+if ($_SESSION['loginstatus']=="") {
+    header("location:loginform.php");
 }
 ?>
 
 <?php include('function.php'); ?>
 
-
-
-
 <?php
-if(isset($_POST["sbmt"]))
-{
-	$cn=makeconnection();
-	$s="delete from subcategory  where subcatid='" . $_POST["s1"] . "'";
-	mysqli_query($cn,$s);
-	mysqli_close($cn);
-	echo "<script>alert('Record Delete');</script>";
-    }
+if (isset($_POST["sbmt"])) {
+    $cn=makeconnection();
+    $s="delete from subcategory  where subcatid='" . $_POST["s1"] . "'";
+    mysqli_query($cn, $s);
+    mysqli_close($cn);
+    echo "<script>alert('Record Delete');</script>";
+}
 ?>
-
-
 
 <?php include('top.php'); ?>
 <!--/sticky-->
@@ -56,60 +48,44 @@ if(isset($_POST["sbmt"]))
 </div>
 <div class="col-sm-9">
 
+    <form method="post" enctype="multipart/form-data">
+    <table border="0" width="400px" height="250px" align="center" class="tableshadow">
+    <tr><td colspan="2" class="toptd">Delete Subcategory</td></tr>
+    <tr><td class="lefttxt">Select Category</td><td><select name="t2" required/><option value="">Select</option>
 
+    <?php
+    $cn=makeconnection();
+    $s="select * from category";
+    $result=mysqli_query($cn, $s);
+    $r=mysqli_num_rows($result);
+    //echo $r;
 
-
-<form method="post" enctype="multipart/form-data">
-<table border="0" width="400px" height="250px" align="center" class="tableshadow">
-<tr><td colspan="2" class="toptd">Delete Subcategory</td></tr>
-<tr><td class="lefttxt">Select Category</td><td><select name="t2" required/><option value="">Select</option>
-
-<?php
-$cn=makeconnection();
-$s="select * from category";
-$result=mysqli_query($cn,$s);
-$r=mysqli_num_rows($result);
-//echo $r;
-
-while($data=mysqli_fetch_array($result))
-{
-		if(isset($_POST["show"])&& $data[0]==$_POST["t2"])
-		{
-		echo "<option value=$data[0] selected>$data[1]</option>";
-		}
-		else
-		{
-			echo "<option value=$data[0]>$data[1]</option>";
-		}
-	
-}
-mysqli_close($cn);
-?>
+    while ($data=mysqli_fetch_array($result)) {
+        if (isset($_POST["show"])&& $data[0]==$_POST["t2"]) {
+            echo "<option value=$data[0] selected>$data[1]</option>";
+        } else {
+            echo "<option value=$data[0]>$data[1]</option>";
+        }
+    }
+    mysqli_close($cn);
+    ?>
 </select>
 <input type="submit" value="Show" name="show" formnovalidate/>
-
-
 
 <tr><td class="lefttxt">Select Subcategory</td><td><select name="s1" required/><option value="">Select</option>
 
 <?php
-if(isset($_POST["show"]))
-{
+if (isset($_POST["show"])) {
+    $cn=makeconnection();
+    $s="select * from subcategory where catid='" . $_POST["t2"] ."'";
+    $result=mysqli_query($cn, $s);
+    $r=mysqli_num_rows($result);
+    //echo $r;
 
-$cn=makeconnection();
-$s="select * from subcategory where catid='" . $_POST["t2"] ."'";
-$result=mysqli_query($cn,$s);
-$r=mysqli_num_rows($result);
-//echo $r;
-
-while($data=mysqli_fetch_array($result))
-{
-	
-	
-		echo "<option value=$data[0]>$data[1]</option>";
-	
-}
-mysqli_close($cn);
+    while ($data=mysqli_fetch_array($result)) {
+        echo "<option value=$data[0]>$data[1]</option>";
+    }
+    mysqli_close($cn);
 }
 ?>
 
@@ -124,12 +100,8 @@ mysqli_close($cn);
 
 </div>
 
-
 </div>
 <?php include('bottom.php'); ?>
 
 </body>
 </html>
-
-
-             
