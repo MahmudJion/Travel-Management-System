@@ -15,9 +15,6 @@
 <tr><td>Type of User</td><td><select><option value="Select">Select</option><option value="Admin">Admin</option><option value="General">General</option></select></td></tr>
 <tr><td colspan="2" align="center"><input type="button" value="SAVE" /></td></tr>
 
-
-
-
 </table>
 </form>
 </body>
