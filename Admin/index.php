@@ -1,4 +1,6 @@
-<?php if(!isset($_SESSION)) { session_start(); } ?>
+<?php if (!isset($_SESSION)) {
+    session_start();
+} ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +10,7 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--js--> 
+<!--js-->
 <script src="js/jquery.min.js"></script>
 
 <!--/js-->
@@ -19,12 +21,10 @@
 <!--sticky-->
 
 <?php
-if($_SESSION['loginstatus']=="")
-{
-	header("location:loginform.php");
+if ($_SESSION['loginstatus']=="") {
+    header("location:loginform.php");
 }
 ?>
-
 
 <?php include('top.php'); ?>
 <!--/sticky-->
@@ -35,7 +35,6 @@ if($_SESSION['loginstatus']=="")
 <div class="col-sm-9" align="center">
 	<h1>WELCOME TO ADMIN PANEL</h1>
 </div>
-
 
 </div>
 <?php include('bottom.php'); ?>
