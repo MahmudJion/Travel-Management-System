@@ -12,10 +12,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
-
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--js--> 
+<!--js-->
 <script src="js/jquery.min.js"></script>
 
 <!--/js-->
@@ -27,30 +25,24 @@
 <?php include('function.php'); ?>
 <?php
 $_SESSION['loginstatus']="";
-if(isset($_POST["sbmt"]))
-{
-	$cn=makeconnection();
-	$s="select * from users where Username='" . $_POST["t1"] . "' and Pwd='" . $_POST["t2"] ."'";
-	
-	$q=mysqli_query($cn,$s);
-	$r=mysqli_num_rows($q);
-$data=mysqli_fetch_array($q);
-	mysqli_close($cn);
-	if($r>0)
-	{
-		$_SESSION["Username"]= $_POST["t1"];
-		$_SESSION["usertype"]=$data[2];
-		$_SESSION['loginstatus']="yes";
-		header("location:index.php");
-	}
-	else
-	{
-	echo "<script>alert('Invalid User Name or Password');</script>";
-}
+if (isset($_POST["sbmt"])) {
+    $cn=makeconnection();
+    $s="select * from users where Username='" . $_POST["t1"] . "' and Pwd='" . $_POST["t2"] ."'";
+
+    $q=mysqli_query($cn, $s);
+    $r=mysqli_num_rows($q);
+    $data=mysqli_fetch_array($q);
+    mysqli_close($cn);
+    if ($r>0) {
+        $_SESSION["Username"]= $_POST["t1"];
+        $_SESSION["usertype"]=$data[2];
+        $_SESSION['loginstatus']="yes";
+        header("location:index.php");
+    } else {
+        echo "<script>alert('Invalid User Name or Password');</script>";
+    }
 }
 ?>
-
-
 
 <?php include('topforlogin.php'); ?>
 <!--/sticky-->
@@ -59,8 +51,6 @@ $data=mysqli_fetch_array($q);
 
 </div>
 <div class="col-sm-9">
-
-
 
 
 <form method="post">
@@ -72,16 +62,10 @@ $data=mysqli_fetch_array($q);
 <tr><td class="lefttxt">Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type="password" name="t2" required pattern="[a-zA-z0-9]{1,10}" title"Please Enter Only Characters between 1 to 10 for Password" /></td></tr></table>
 <tr><td></td><td align="center" ><input type="submit" value="LOGIN" name="sbmt" /></td></tr>
 
-
-
-
 </table>
 </form>
 
-
-
 </div>
-
 
 </div>
 <?php include('bottom.php'); ?>
