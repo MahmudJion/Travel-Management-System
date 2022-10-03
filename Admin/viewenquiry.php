@@ -1,4 +1,6 @@
-<?php if(!isset($_SESSION)) { session_start(); } ?>
+<?php if (!isset($_SESSION)) {
+    session_start();
+} ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +13,8 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
-
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--js--> 
+<!--js-->
 <script src="js/jquery.min.js"></script>
 
 <!--/js-->
@@ -24,16 +23,12 @@
 <!--header-->
 <!--sticky-->
 <?php
-if($_SESSION['loginstatus']=="")
-{
-	header("location:loginform.php");
+if ($_SESSION['loginstatus']=="") {
+    header("location:loginform.php");
 }
 ?>
 
-
 <?php include('function.php'); ?>
-
-
 
 <?php include('top.php'); ?>
 <!--/sticky-->
@@ -42,9 +37,6 @@ if($_SESSION['loginstatus']=="")
 <?php include('left.php'); ?>
 </div>
 <div class="col-sm-9">
-
-
-
 
 <form method="post">
 <table border="0" width="90%" height="300px" align="center" class="tableshadow">
@@ -62,19 +54,15 @@ if($_SESSION['loginstatus']=="")
 <td style="font-size:15px; padding:5px; font-weight:bold;">no. of Adults</td>
 <td style="font-size:15px; padding:5px; font-weight:bold;">Status Field</td></tr>
 
-
 <?php
 
 $s="select * from enquiry,package where enquiry.Packageid=package.Packid";
-$result=mysqli_query($cn,$s);
+$result=mysqli_query($cn, $s);
 $r=mysqli_num_rows($result);
 //echo $r;
 
-while($data=mysqli_fetch_array($result))
-{
-
-	
-		echo "<td style=' padding:5px;'>$data[12]</td>
+while ($data=mysqli_fetch_array($result)) {
+    echo "<td style=' padding:5px;'>$data[12]</td>
 		<td style=' padding:5px;'>$data[1]</td>
 		<td style=' padding:5px;'>$data[2]</td>
 		<td style=' padding:5px;'>$data[3]</td>
@@ -85,11 +73,7 @@ while($data=mysqli_fetch_array($result))
 		<td style=' padding:5px;'>$data[8]</td>
 		<td style=' padding:5px;'><a href='chstatus.php?eid=$data[0]'>$data[10]</a></td>
 		</tr>";
-
 }
-
-
-
 
 ?>
 
@@ -98,10 +82,7 @@ while($data=mysqli_fetch_array($result))
 
 </form>
 
-
-
 </div>
-
 
 </div>
 <?php include('bottom.php'); ?>
