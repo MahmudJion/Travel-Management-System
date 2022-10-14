@@ -1,4 +1,4 @@
-<div class="fotter">	
+<div class="fotter">
 	 <div class="container">
 		 <div class="fotter-grids">
 			 <div class="col-md-4 fotter-left">
@@ -10,7 +10,6 @@
 						<h3></h3>
                         <div class="footer-list">
                         </div>
-             
 			     </div>
 			 <div class="col-md-4 fotter-right" style="padding-left:10px">
 			 <h3></h3><br/>
@@ -28,9 +27,8 @@
 		 <div class="clearfix"></div>
 	 </div>
 </div>
-</div>  
+</div>
 <div class="copyright text-right">
 <p style="padding-right:100px"></p>
 </div>
-  
-  
+
