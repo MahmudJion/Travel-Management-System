@@ -9,7 +9,7 @@
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--js--> 
+<!--js-->
 <script src="js/jquery.min.js"></script>
 
 <!--/js-->
@@ -33,15 +33,12 @@
 
 
 $s="select * from category";
-$result=mysqli_query($cn,$s);
+$result=mysqli_query($cn, $s);
 $r=mysqli_num_rows($result);
 //echo $r;
 
-while($data=mysqli_fetch_array($result))
-{
-	
-		echo "<tr><td style=' padding:5px;'><b><a href='subcat.php?catid=$data[0]'>$data[1]</a></b></td></tr>";
-
+while ($data=mysqli_fetch_array($result)) {
+    echo "<tr><td style=' padding:5px;'><b><a href='subcat.php?catid=$data[0]'>$data[1]</a></b></td></tr>";
 }
 mysqli_close($cn);
 ?>
