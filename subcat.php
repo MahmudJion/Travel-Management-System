@@ -9,7 +9,7 @@
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--js--> 
+<!--js-->
 <script src="js/jquery.min.js"></script>
 
 <!--/js-->
@@ -32,15 +32,12 @@
 <?php
 
 $s="select * from category";
-$result=mysqli_query($cn,$s);
+$result=mysqli_query($cn, $s);
 $r=mysqli_num_rows($result);
 //echo $r;
 
-while($data=mysqli_fetch_array($result))
-{
-	
-		echo "<tr><td style=' padding:5px;'><a href='subcat.php?catid=$data[0]'>$data[1]</a></td></tr>";
-
+while ($data=mysqli_fetch_array($result)) {
+    echo "<tr><td style=' padding:5px;'><a href='subcat.php?catid=$data[0]'>$data[1]</a></td></tr>";
 }
 
 ?>
@@ -54,31 +51,23 @@ while($data=mysqli_fetch_array($result))
 <tr><td class="headingText">Subcategories</td></tr>
 <tr><td class="paraText" width="900px">
 
-
-
-
 <table cellpadding="0" cellspacing="0" width="900px">
 
 <?php
 
 $s="select * from subcategory where Catid='" .$_GET["catid"] . "'";
-$result=mysqli_query($cn,$s);
+$result=mysqli_query($cn, $s);
 $r=mysqli_num_rows($result);
 //echo $r;
 $n=0;
-while($data=mysqli_fetch_array($result))
-{
-	
-	if($n%3==0)
-	{
-	?>
-		
-
+while ($data=mysqli_fetch_array($result)) {
+    if ($n%3==0) {
+        ?>
 
 <tr>
 <?php
 
-	}?>
+    }?>
 <td>
 <table border="0" width="100px" bordercolor="#FF6666">
 
@@ -90,9 +79,8 @@ while($data=mysqli_fetch_array($result))
 </td>
 <?php
 
-if($n%3==2)
-{
-?>
+if ($n%3==2) {
+    ?>
 </tr>
 
 <?php
@@ -103,9 +91,6 @@ mysqli_close($cn);
 ?>
 
 </table>
-
-
-
 
 </td></tr></table>
 
