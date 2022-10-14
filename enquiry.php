@@ -9,7 +9,7 @@
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--js--> 
+<!--js-->
 <script src="js/jquery.min.js"></script>
 
 <!--/js-->
@@ -17,15 +17,12 @@
 <body>
 <?php include('function.php'); ?>
 <?php
-if(isset($_POST["sbmt"]))
-{
-	$cn=makeconnection();
-	$s="insert into enquiry(Packageid,Name,Gender,Mobileno,Email,NoofDays,Child,Adults,Message,Statusfield) values('" . $_REQUEST["pid"] ."','" . $_POST["t1"] ."','" . $_POST["r1"] ."','" . $_POST["t2"] ."','" . $_POST["t3"] ."','" . $_POST["t4"] ."','" . $_POST["t5"] ."','" . $_POST["t6"] ."','" . $_POST["t7"] ."','Pending')";	
-	
-	
-		mysqli_query($cn,$s);
-	
-	echo "<script>alert('Record Save');</script>";
+if (isset($_POST["sbmt"])) {
+    $cn=makeconnection();
+    $s="insert into enquiry(Packageid,Name,Gender,Mobileno,Email,NoofDays,Child,Adults,Message,Statusfield) values('" . $_REQUEST["pid"] ."','" . $_POST["t1"] ."','" . $_POST["r1"] ."','" . $_POST["t2"] ."','" . $_POST["t3"] ."','" . $_POST["t4"] ."','" . $_POST["t5"] ."','" . $_POST["t6"] ."','" . $_POST["t7"] ."','Pending')";
+
+    mysqli_query($cn, $s);
+    echo "<script>alert('Record Save');</script>";
 }
 ?>
 
@@ -44,15 +41,12 @@ if(isset($_POST["sbmt"]))
 <?php
 
 $s="select * from category";
-$result=mysqli_query($cn,$s);
+$result=mysqli_query($cn, $s);
 $r=mysqli_num_rows($result);
 //echo $r;
 
-while($data=mysqli_fetch_array($result))
-{
-	
-		echo "<tr><td style=' padding:5px;'><a href='subcat.php?catid=$data[0]'>$data[1]</a></td></tr>";
-
+while ($data=mysqli_fetch_array($result)) {
+    echo "<tr><td style=' padding:5px;'><a href='subcat.php?catid=$data[0]'>$data[1]</a></td></tr>";
 }
 ?>
 
@@ -72,14 +66,14 @@ while($data=mysqli_fetch_array($result))
 
 $s="select * from package,category,subcategory where package.category=category.cat_id and package.subcategory=subcategory.subcatid and package.packid='" . $_GET["pid"] ."'";
 
-$result=mysqli_query($cn,$s);
+$result=mysqli_query($cn, $s);
 $r=mysqli_num_rows($result);
 //echo $r;
 $n=0;
 $data=mysqli_fetch_array($result);
 mysqli_close($cn);
 ?>
- 
+
 <form method="post" enctype="multipart/form-data">
 <tr><td colspan="3" class="middletext">Package Id:&nbsp;&nbsp;&nbsp;<?php echo $data[0];?></td></tr>
 <tr><td colspan="3" class="middletext">Pack Name:&nbsp;&nbsp;&nbsp;<?php echo $data[1];?></td></tr>
